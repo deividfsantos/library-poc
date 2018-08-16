@@ -7,7 +7,6 @@ import com.library.rent.poc.entity.RentEntity;
 import com.library.rent.poc.exception.BookStockEmptyException;
 import com.library.rent.poc.exception.NotFoundException;
 import com.library.rent.poc.repository.RentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,14 +14,15 @@ import java.util.List;
 @Service
 public class RentService {
 
-    @Autowired
     private RentRepository rentRepository;
-
-    @Autowired
     private BookClient bookClient;
-
-    @Autowired
     private UserClient userClient;
+
+    public RentService(RentRepository rentRepository, BookClient bookClient, UserClient userClient) {
+        this.rentRepository = rentRepository;
+        this.bookClient = bookClient;
+        this.userClient = userClient;
+    }
 
     public String rentABook(String cpf, String bookTitle) {
         Book book = bookClient.getBookByTitle(bookTitle);

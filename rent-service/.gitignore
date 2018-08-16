@@ -12,6 +12,7 @@ out/**
 *.zip
 *.tar.gz
 *.rar
+*.iml
 
 
 .gradle

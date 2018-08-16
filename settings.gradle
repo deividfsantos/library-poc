@@ -1,0 +1,3 @@
+include: 'book-service',
+        'rent-service',
+        'user-service'

@@ -1,21 +1,17 @@
 package com.library.book.poc.config;
 
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DatabaseConfig {
 
-    private MongoClient mongoClient;
-
-    public DatabaseConfig() {
-        this.mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+    @Bean
+    public MongoCollection<Document> mongoClient() {
+        return new MongoClient().getDatabase("book").getCollection("books");
     }
 
-    public MongoCollection<Document> getMongoDatabase() {
-        return mongoClient.getDatabase("Book").getCollection("books");
-    }
 }

@@ -6,9 +6,14 @@ import com.library.user.poc.input.UserInput;
 import com.library.user.poc.output.CpfOutput;
 import com.library.user.poc.output.UserOutput;
 import com.library.user.poc.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,11 +23,13 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("v1/users")
 public class UserApi {
 
-    @Autowired
     private ObjectMapper objectMapper;
-
-    @Autowired
     private UserService userService;
+
+    public UserApi(ObjectMapper objectMapper, UserService userService) {
+        this.objectMapper = objectMapper;
+        this.userService = userService;
+    }
 
     @PostMapping
     public ResponseEntity<?> insertUser(@RequestBody UserInput userInput) {

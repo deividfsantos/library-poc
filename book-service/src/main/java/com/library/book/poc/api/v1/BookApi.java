@@ -1,14 +1,20 @@
 package com.library.book.poc.api.v1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.library.book.poc.output.v1.BookOutput;
-import com.library.book.poc.service.BookService;
 import com.library.book.poc.dto.Book;
 import com.library.book.poc.input.BookInput;
+import com.library.book.poc.output.v1.BookOutput;
 import com.library.book.poc.output.v1.TitleOutput;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.library.book.poc.service.BookService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.net.UnknownHostException;
 import java.util.List;
@@ -19,11 +25,13 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/v1/books")
 public class BookApi {
 
-    @Autowired
     private BookService bookService;
-
-    @Autowired
     private ObjectMapper objectMapper;
+
+    public BookApi(BookService bookService, ObjectMapper objectMapper) {
+        this.bookService = bookService;
+        this.objectMapper = objectMapper;
+    }
 
     @PostMapping
     public ResponseEntity<?> insertABook(@RequestBody BookInput bookInput) throws Exception {

@@ -1,6 +1,5 @@
 package com.library.user.poc.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.library.user.poc.entity.UserEntity;
 import com.library.user.poc.exception.UserAlreadyExistsException;
 import com.library.user.poc.exception.UserNotFoundException;
@@ -13,11 +12,11 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
     private UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public String insert(UserEntity user) {
         if (userRepository.findById(user.getCpf()).isPresent()) {
