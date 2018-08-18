@@ -1,0 +1,45 @@
+{
+  "consumer": {
+    "name": "ui"
+  },
+  "provider": {
+    "name": "user-service"
+  },
+  "interactions": [
+    {
+      "description": "a request to POST a user",
+      "providerState": "provider accepts a new user",
+      "request": {
+        "method": "POST",
+        "path": "/v1/users",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Deivid Santos",
+          "phone": "98763546561",
+          "cpf": "12316456"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "cpf": "12316456"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

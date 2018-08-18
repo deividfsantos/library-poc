@@ -1,3 +1,19 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id "org.sonarqube" version "2.6"
+}
+
 group 'user-service'
 version '1.0-SNAPSHOT'
 
@@ -8,26 +24,20 @@ apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
 
+
 repositories {
     mavenCentral()
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.4.RELEASE")
-    }
-}
 
 dependencies {
     test.useJUnitPlatform()
 
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.4.RELEASE'
+    testCompile("au.com.dius:pact-jvm-provider-junit5_2.12:3.5.20")
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testRuntime("org.junit.platform:junit-platform-launcher:1.2.0")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.2.0")
-    testRuntime("org.junit.vintage:junit-vintage-engine:5.2.0")
+    testCompile("org.junit.platform:junit-platform-launcher:1.2.0")
+    testCompile("org.junit.jupiter:junit-jupiter-engine:5.2.0")
+    testCompile("org.junit.vintage:junit-vintage-engine:5.2.0")
 }
