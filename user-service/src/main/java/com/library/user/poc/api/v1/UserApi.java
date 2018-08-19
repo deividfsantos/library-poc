@@ -7,15 +7,11 @@ import com.library.user.poc.output.CpfOutput;
 import com.library.user.poc.output.UserOutput;
 import com.library.user.poc.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -32,7 +28,7 @@ public class UserApi {
     }
 
     @PostMapping
-    public ResponseEntity<?> insertUser(@RequestBody UserInput userInput) {
+    public ResponseEntity<?> insertUser(@RequestBody @Valid UserInput userInput) {
         String cpf = userService.insert(objectMapper.convertValue(userInput, UserEntity.class));
         return ok(new CpfOutput(cpf));
     }
@@ -40,7 +36,10 @@ public class UserApi {
     @GetMapping
     public ResponseEntity<?> getAllUsers() {
         List<UserEntity> users = userService.getAll();
-        return ok(users.stream().map(user -> objectMapper.convertValue(user, UserOutput.class)));
+        return ok(users
+                .stream()
+                .map(user -> objectMapper.convertValue(user, UserOutput.class))
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/{cpf}")

@@ -7,27 +7,27 @@
   },
   "interactions": [
     {
-      "description": "a request to POST a user",
-      "providerState": "accept a new user",
+      "description": "a request to PUT a user",
+      "providerState": "update an existing user",
       "request": {
-        "method": "POST",
-        "path": "/v1/users",
+        "method": "PUT",
+        "path": "/v1/users/12345678900",
         "headers": {
           "Content-Type": "application/json"
         },
         "body": {
           "name": "Deivid Santos",
-          "phone": "98763546561",
-          "cpf": "12316456"
+          "phone": "51958653203",
+          "cpf": "12345678900"
         }
       },
       "response": {
-        "status": 200,
+        "status": 417,
         "headers": {
           "Content-Type": "application/json"
         },
         "body": {
-          "cpf": "12316456"
+          "message": "User already exists."
         },
         "matchingRules": {
           "$.body": {

@@ -6,9 +6,7 @@ import com.library.user.poc.exception.UserNotFoundException;
 import com.library.user.poc.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
@@ -19,17 +17,19 @@ import static org.hamcrest.beans.SamePropertyValuesAs.samePropertyValuesAs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class UserServiceTest {
 
-    @Autowired
     private UserService userService;
-
-    @MockBean
     private UserRepository userRepository;
+
+    public UserServiceTest() {
+        this.userRepository = mock(UserRepository.class);
+        this.userService = new UserService(userRepository);
+    }
 
     @Test
     public void insertOneUserSuccessTest() {

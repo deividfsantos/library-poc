@@ -1,9 +1,16 @@
 package com.library.user.poc.input;
 
+import javax.validation.constraints.NotEmpty;
+
 public class UserInput {
 
+    @NotEmpty
     private String name;
+
+    @NotEmpty
     private String phone;
+
+    @NotEmpty
     private String cpf;
 
     public UserInput() {

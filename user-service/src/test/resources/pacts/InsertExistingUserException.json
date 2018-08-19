@@ -8,7 +8,7 @@
   "interactions": [
     {
       "description": "a request to POST a user",
-      "providerState": "accept a new user",
+      "providerState": "insert an existing user",
       "request": {
         "method": "POST",
         "path": "/v1/users",
@@ -22,12 +22,12 @@
         }
       },
       "response": {
-        "status": 200,
+        "status": 417,
         "headers": {
           "Content-Type": "application/json"
         },
         "body": {
-          "cpf": "12316456"
+          "message": "User already exists."
         },
         "matchingRules": {
           "$.body": {

@@ -1,0 +1,59 @@
+{
+  "consumer": {
+    "name": "User-Api"
+  },
+  "provider": {
+    "name": "user-service"
+  },
+  "interactions": [
+    {
+      "description": "a request to GET all users",
+      "providerState": "get all users",
+      "request": {
+        "method": "GET",
+        "path": "/v1/users",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "cpf": "12345678900",
+            "name": "John Cena",
+            "phone": "51698532664"
+          },
+          {
+            "cpf": "98765432100",
+            "name": "Klark Kent",
+            "phone": "55986525944"
+          },
+          {
+            "cpf": "98765432100",
+            "name": "Kakaroto",
+            "phone": "45259563288"
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "match": "type",
+            "match": [
+              {
+                "min": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

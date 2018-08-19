@@ -7,27 +7,22 @@
   },
   "interactions": [
     {
-      "description": "a request to POST a user",
-      "providerState": "accept a new user",
+      "description": "a request to GET an invalid user",
+      "providerState": "get an invalid user by CPF",
       "request": {
-        "method": "POST",
-        "path": "/v1/users",
+        "method": "GET",
+        "path": "/v1/users/98765432100",
         "headers": {
           "Content-Type": "application/json"
-        },
-        "body": {
-          "name": "Deivid Santos",
-          "phone": "98763546561",
-          "cpf": "12316456"
         }
       },
       "response": {
-        "status": 200,
+        "status": 417,
         "headers": {
           "Content-Type": "application/json"
         },
         "body": {
-          "cpf": "12316456"
+          "message": "User not found."
         },
         "matchingRules": {
           "$.body": {
