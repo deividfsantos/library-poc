@@ -1,24 +1,24 @@
 {
   "consumer": {
-    "name": "User-Api"
+    "name": "Book-Api"
   },
   "provider": {
-    "name": "user-service"
+    "name": "book-service"
   },
   "interactions": [
     {
-      "description": "a request to PUT a user",
-      "providerState": "update an existing user",
+      "description": "a request to PUT an invalid Book",
+      "providerState": "update a not found Book",
       "request": {
         "method": "PUT",
-        "path": "/v1/users/12345678900",
+        "path": "/v1/books/Harry Potter",
         "headers": {
           "Content-Type": "application/json"
         },
         "body": {
-          "name": "Deivid Santos",
-          "phone": "51958653203",
-          "cpf": "12345678900"
+          "author": "J.K. Rowling",
+          "title": "Harry Potter",
+          "stock": "15"
         }
       },
       "response": {
@@ -27,7 +27,7 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "message": "User already exists."
+          "message": "No books with this name were found."
         },
         "matchingRules": {
           "$.body": {

@@ -1,16 +1,12 @@
 package com.library.book.poc.service;
 
 
+import com.library.book.poc.dto.Book;
 import com.library.book.poc.exception.BookAlreadyExistsException;
 import com.library.book.poc.exception.BookDoesNotExistsException;
-import com.library.book.poc.dto.Book;
 import com.library.book.poc.repository.BookRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,20 +15,20 @@ import static org.hamcrest.beans.SamePropertyValuesAs.samePropertyValuesAs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class BookServiceTest {
 
-    @Autowired
     private BookService bookService;
-
-    @MockBean
     private BookRepository bookRepository;
 
     private String title;
+
+    public BookServiceTest() {
+        this.bookRepository = mock(BookRepository.class);
+        this.bookService = new BookService(bookRepository);
+    }
 
     @Test
     public void insertBookSuccessTest() {

@@ -7,15 +7,9 @@ import com.library.book.poc.output.v1.BookOutput;
 import com.library.book.poc.output.v1.TitleOutput;
 import com.library.book.poc.service.BookService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -34,7 +28,7 @@ public class BookApi {
     }
 
     @PostMapping
-    public ResponseEntity<?> insertABook(@RequestBody BookInput bookInput) throws Exception {
+    public ResponseEntity<?> insertABook(@RequestBody @Valid BookInput bookInput) throws Exception {
         String bookTitle = bookService.insert(objectMapper.convertValue(bookInput, Book.class));
         return ok(new TitleOutput(bookTitle));
     }

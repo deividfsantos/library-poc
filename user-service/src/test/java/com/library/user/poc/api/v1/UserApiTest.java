@@ -1,4 +1,4 @@
-package com.library.user.poc.api;
+package com.library.user.poc.api.v1;
 
 import au.com.dius.pact.provider.junit.Provider;
 import au.com.dius.pact.provider.junit.State;
@@ -35,13 +35,13 @@ public class UserApiTest {
     private UserService userService;
 
     @BeforeEach
-    void setupTestTarget(PactVerificationContext context) {
+    public void setupTestTarget(PactVerificationContext context) {
         context.setTarget(new HttpTestTarget("localhost", 8081, "/"));
     }
 
     @TestTemplate
     @ExtendWith(PactVerificationInvocationContextProvider.class)
-    void pactVerificationTestTemplate(PactVerificationContext context) {
+    public void pactVerificationTestTemplate(PactVerificationContext context) {
         context.verifyInteraction();
     }
 
@@ -83,10 +83,10 @@ public class UserApiTest {
                 .thenReturn(new UserEntity("Deivid Santos", "51958653203", "12345678900"));
     }
 
-    @State("update an existing user")
+    @State("update a not found user")
     public void toUpdateExistingUser() {
         when(userService.update(eq("12345678900"), any(UserEntity.class)))
-                .thenThrow(new UserAlreadyExistsException("User already exists."));
+                .thenThrow(new UserAlreadyExistsException("User not found."));
     }
 }
 

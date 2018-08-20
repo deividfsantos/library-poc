@@ -1,0 +1,59 @@
+{
+  "consumer": {
+    "name": "Book-Api"
+  },
+  "provider": {
+    "name": "book-service"
+  },
+  "interactions": [
+    {
+      "description": "a request to GET all books",
+      "providerState": "get all books",
+      "request": {
+        "method": "GET",
+        "path": "/v1/books",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "author": "Author Test 1",
+            "title": "Title Test 1",
+            "stock": "15"
+          },
+          {
+            "author": "Author Test 2",
+            "title": "Title Test 2",
+            "stock": "4"
+          },
+          {
+            "author": "Author Test 3",
+            "title": "Title Test 3",
+            "stock": "3"
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "match": "type",
+            "match": [
+              {
+                "min": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

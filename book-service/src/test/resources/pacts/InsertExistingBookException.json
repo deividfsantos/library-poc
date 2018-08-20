@@ -1,0 +1,45 @@
+{
+  "consumer": {
+    "name": "Book-Api"
+  },
+  "provider": {
+    "name": "book-service"
+  },
+  "interactions": [
+    {
+      "description": "a request to POST an existing book",
+      "providerState": "insert an existing book",
+      "request": {
+        "method": "POST",
+        "path": "/v1/books",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "author": "J.K. Rowling",
+          "title": "Harry Potter",
+          "stock": "15"
+        }
+      },
+      "response": {
+        "status": 417,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "message": "A book with this name already exists."
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

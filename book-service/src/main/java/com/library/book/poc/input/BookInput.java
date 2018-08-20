@@ -1,9 +1,16 @@
 package com.library.book.poc.input;
 
+import javax.validation.constraints.NotEmpty;
+
 public class BookInput {
 
+    @NotEmpty
     private String author;
+
+    @NotEmpty
     private String title;
+
+    @NotEmpty
     private String stock;
 
     public String getAuthor() {

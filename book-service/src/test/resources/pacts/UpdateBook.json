@@ -1,0 +1,47 @@
+{
+  "consumer": {
+    "name": "Book-Api"
+  },
+  "provider": {
+    "name": "book-service"
+  },
+  "interactions": [
+    {
+      "description": "a request to PUT a Book",
+      "providerState": "update a Book",
+      "request": {
+        "method": "PUT",
+        "path": "/v1/books/Harry Potter",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "author": "J.K. Rowling",
+          "title": "Harry Potter",
+          "stock": "15"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "author": "J.K. Rowling",
+          "title": "Harry Potter",
+          "stock": "15"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

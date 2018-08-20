@@ -1,0 +1,42 @@
+{
+  "consumer": {
+    "name": "Book-Api"
+  },
+  "provider": {
+    "name": "book-service"
+  },
+  "interactions": [
+    {
+      "description": "a request to GET a book",
+      "providerState": "get a book by name",
+      "request": {
+        "method": "GET",
+        "path": "/v1/books/Harry Potter",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "author": "J.K. Rowling",
+          "title": "Harry Potter",
+          "stock": "15"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

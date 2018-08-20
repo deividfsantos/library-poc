@@ -1,0 +1,40 @@
+{
+  "consumer": {
+    "name": "Book-Api"
+  },
+  "provider": {
+    "name": "book-service"
+  },
+  "interactions": [
+    {
+      "description": "a request to DELETE an invalid book",
+      "providerState": "delete a not found book",
+      "request": {
+        "method": "DELETE",
+        "path": "/v1/books/Harry Potter",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 417,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "message": "No books with this name were found."
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

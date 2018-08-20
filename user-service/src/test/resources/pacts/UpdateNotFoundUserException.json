@@ -1,0 +1,45 @@
+{
+  "consumer": {
+    "name": "User-Api"
+  },
+  "provider": {
+    "name": "user-service"
+  },
+  "interactions": [
+    {
+      "description": "a request to PUT a user",
+      "providerState": "update a not found user",
+      "request": {
+        "method": "PUT",
+        "path": "/v1/users/12345678900",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Deivid Santos",
+          "phone": "51958653203",
+          "cpf": "12345678900"
+        }
+      },
+      "response": {
+        "status": 417,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "message": "User not found."
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
