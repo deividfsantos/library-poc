@@ -1,0 +1,59 @@
+{
+  "consumer": {
+    "name": "Rent-Api"
+  },
+  "provider": {
+    "name": "rent-service"
+  },
+  "interactions": [
+    {
+      "description": "A request to get all rents by cpf",
+      "providerState": "get rents",
+      "request": {
+        "method": "GET",
+        "path": "/v1/rent/03459409591",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "code": "123",
+            "cpf": "03459409591",
+            "bookName": "Harry Potter"
+          },
+          {
+            "code": "124",
+            "cpf": "03459409591",
+            "bookName": "Maze Runner"
+          },
+          {
+            "code": "321",
+            "cpf": "03459409591",
+            "bookName": "Sapiens"
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "match": "type",
+            "match": [
+              {
+                "min": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "consumer": {
+    "name": "Rent-Api"
+  },
+  "provider": {
+    "name": "rent-service"
+  },
+  "interactions": [
+    {
+      "description": "A request to post a new book rent",
+      "providerState": "rent a book",
+      "request": {
+        "method": "POST",
+        "path": "/v1/rent/03459409591/Harry Potter",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "receipt": "12345"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type",
+            "match": [
+              {
+                "min": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

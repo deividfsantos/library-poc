@@ -9,9 +9,7 @@ import com.library.rent.poc.exception.NotFoundException;
 import com.library.rent.poc.repository.RentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
@@ -23,24 +21,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class RentServiceTest {
 
-    @Autowired
     private RentService rentService;
-
-    @MockBean
     private RentRepository rentRepository;
-
-    @MockBean
     private BookClient bookClient;
-
-    @MockBean
     private UserClient userClient;
+
+    public RentServiceTest() {
+        this.rentRepository = mock(RentRepository.class);
+        this.bookClient = mock(BookClient.class);
+        this.userClient = mock(UserClient.class);
+        this.rentService = new RentService(rentRepository, bookClient, userClient);
+    }
 
     @Test
     public void rentABookSuccessTest() {

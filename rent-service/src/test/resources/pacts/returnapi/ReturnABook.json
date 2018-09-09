@@ -1,0 +1,45 @@
+{
+  "consumer": {
+    "name": "Return-Api"
+  },
+  "provider": {
+    "name": "rent-service"
+  },
+  "interactions": [
+    {
+      "description": "A request to delete a book rent",
+      "providerState": "return a book",
+      "request": {
+        "method": "DELETE",
+        "path": "/v1/rent/12345",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "stock": 12
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type",
+            "match": [
+              {
+                "min": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
