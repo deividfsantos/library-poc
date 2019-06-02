@@ -11,6 +11,10 @@ plugins {
     id "org.sonarqube" version "2.6"
 }
 
+wrapper {
+    gradleVersion = '4.8'
+}
+
 group 'rent-service'
 version '1.0-SNAPSHOT'
 
