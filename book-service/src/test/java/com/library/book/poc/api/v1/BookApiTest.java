@@ -69,37 +69,37 @@ public class BookApiTest {
 
     @State("get a book by name")
     public void toGetABookByName() {
-        when(bookService.getByTitle("Harry Potter"))
+        when(bookService.getByTitle("HarryPotter"))
                 .thenReturn(new Book("J.K. Rowling", "Harry Potter", "15"));
     }
 
     @State("get a book not found by name")
     public void toGetABookNotFoundByName() {
-        when(bookService.getByTitle("Harry Potter"))
+        when(bookService.getByTitle("HarryPotter"))
                 .thenThrow(new BookDoesNotExistsException("No books with this name were found."));
     }
 
     @State("update a Book")
     public void toUpdateABookByName() {
-        when(bookService.update(any(Book.class), eq("Harry Potter")))
+        when(bookService.update(any(Book.class), eq("HarryPotter")))
                 .thenReturn(new Book("J.K. Rowling", "Harry Potter", "15"));
     }
 
     @State("update a not found Book")
     public void toUpdateABookNotFoundException() {
-        when(bookService.update(any(Book.class), eq("Harry Potter")))
+        when(bookService.update(any(Book.class), eq("HarryPotter")))
                 .thenThrow(new BookDoesNotExistsException("No books with this name were found."));
     }
 
     @State("delete a book by name")
     public void toDeleteABookByName() {
-        when(bookService.delete("Harry Potter"))
+        when(bookService.delete("HarryPotter"))
                 .thenReturn("Harry Potter");
     }
 
     @State("delete a not found book")
     public void toDeleteABookNotFoundException() {
-        when(bookService.delete("Harry Potter"))
+        when(bookService.delete("HarryPotter"))
                 .thenThrow(new BookDoesNotExistsException("No books with this name were found."));
     }
 }

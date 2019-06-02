@@ -11,7 +11,7 @@
       "providerState": "update a not found Book",
       "request": {
         "method": "PUT",
-        "path": "/v1/books/Harry Potter",
+        "path": "/v1/books/HarryPotter",
         "headers": {
           "Content-Type": "application/json"
         },

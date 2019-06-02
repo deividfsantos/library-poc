@@ -11,7 +11,7 @@
       "providerState": "get a book not found by name",
       "request": {
         "method": "GET",
-        "path": "/v1/books/Harry Potter",
+        "path": "/v1/books/HarryPotter",
         "headers": {
           "Content-Type": "application/json"
         }
