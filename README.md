@@ -1,3 +1,3 @@
 # library-poc
 
-![architecture](https://imgur.com/YAXQVcR)
+![architecture](https://i.imgur.com/YAXQVcR.png)
