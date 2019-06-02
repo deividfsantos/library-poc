@@ -1,10 +1,47 @@
+version: '3'
+networks:
+  rent:
+  databases:
+  services:
 services:
   rent-mongodb:
+    image: mongo:3.4.20
+    networks:
+      - rent
   user-mongodb:
+    image: mongo:3.4.20
+    networks:
+      - databases
   book-mongodb:
+    image: mongo:3.4.20
+    networks:
+      - databases
   rent-service:
-    build: 
+    build: rent-service
+    ports: 
+      - 8081:8080
+    networks:
+      - rent
+      - services
+    depends_on:
+      - rent-mongodb
+      - user-service
+      - book-service
   user-service:
-    build:
+    build: user-service
+    ports:
+      - 8083:8080
+    networks:
+      - services
+      - databases
+    depends_on:
+      - user-mongodb
   book-service:
-    build: 
+    build: book-service
+    ports:
+      - 8082:8080
+    networks:
+      - services
+      - databases
+    depends_on:
+      - book-mongodb
