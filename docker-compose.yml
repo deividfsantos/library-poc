@@ -1,0 +1,10 @@
+services:
+  rent-mongodb:
+  user-mongodb:
+  book-mongodb:
+  rent-service:
+    build: 
+  user-service:
+    build:
+  book-service:
+    build: 
